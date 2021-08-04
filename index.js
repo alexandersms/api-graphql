@@ -5,6 +5,7 @@ const app = express();
 const mongoDBClient = require("./mongoClient");
 const PORT = 5000;
 const { graphqlHTTP } = require("express-graphql");
+const schema = require("./schemas");
 
 app.use(cors());
 
@@ -36,7 +37,7 @@ app.get("/products/:category", async (req, res) => {
 app.use(
   "/graphql",
   graphqlHTTP({
-    //   schema: MyGraphQLSchema,
+    schema: schema,
     graphiql: true,
   })
 );

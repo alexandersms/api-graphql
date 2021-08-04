@@ -32,7 +32,14 @@ const RootQuery = new GraphQLObjectType({
     products: {
       type: new GraphQLList(ProductType),
       resolve(parent, args) {
-        return Product.find({})
+        return Product.find({});
+      },
+    },
+    products: {
+      type: new GraphQLList(ProductType),
+      args: { category: { type: GraphQLString } },
+      resolve(parent, args) {
+        return Product.find({ category: args.category });
       },
     },
   },
